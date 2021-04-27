@@ -1,0 +1,142 @@
+.wc-visual-status {
+  --background: #fff;
+  --accent-color: #8886F9;
+  --total-duration: 1s;
+  --animation-easing: cubic-bezier( 0.5, 0, 0.5, 1 );
+  --progress-offset-amount: 1em;
+  --progress-offset: calc(100% + var(--progress-offset-amount));
+
+  position: relative;
+
+  display: block;
+  padding-top: calc( 48px + 2em );
+
+  margin: calc( 2 * var( --progress-offset-amount ) ) auto;
+
+  box-sizing: border-box;
+}
+
+.wc-visual-status:before {
+  content: ' ';
+  position: absolute;
+  top: var( --progress-offset );
+  left: 0px;
+  width: calc( 100% * var( --progress ) );
+  max-width: 0%;
+  height: 0.50em;
+  transform: translateY(-50%);
+  border-radius: 0.5em;
+
+  margin-top: calc( -1 * var( --progress-offset-amount ) );
+
+  animation: wc-visual-status-progress var( --total-duration ) var( --animation-easing ) 0s normal forwards;
+
+  background: var( --accent-color );
+}
+
+.wc-visual-status-item {
+  position: absolute;
+  left: calc( 100% * var( --status-progress ) );
+  bottom: 0px;
+  transform: translateX(-50%);
+  opacity: 0.00;
+  max-width: 20%;
+
+  margin-bottom: calc( 1 * var( --progress-offset-amount ) );
+  
+  --animation-delay: calc( var( --status-progress ) * var( --total-duration ) );
+  --animation-speed: calc( 0.50 * var( --total-duration ) );
+  animation: wc-visual-status-fade var( --animation-speed ) linear var( --animation-delay ) normal forwards;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.wc-visual-status-item.pending {
+  filter: saturate( 0% ) opacity( 0.50 );
+}
+
+.wc-visual-status-item:first-child {
+  transform: translateX( 0% );
+}
+
+.wc-visual-status-item.last-step {
+  transform: translateX( -100% );
+}
+
+.wc-visual-status-item.last-step:not( .fixed ):not( .current ) {
+  display: none;
+}
+
+.wc-visual-status-item:before {
+  content: ' ';
+  position: absolute;
+  top: var( --progress-offset );
+  left: 50%;
+  transform: translate( -50%, -50% ) scale( 0 );
+
+  display: block;
+  box-sizing: border-box;
+  width: 1em;
+  height: 1em;
+  opacity: 0.0;
+  background: var( --background );
+  border-radius: 1em;
+  
+  --sub-animation-speed: calc( 0.50 * var( --animation-speed ) );
+  --sub-animation-delay: calc( var( --sub-animation-speed ) + var( --animation-delay ) );
+  animation: wc-visual-status-ripple var( --sub-animation-speed ) var( --animation-easing ) var( --sub-animation-delay ) normal forwards;
+
+  border: 0.25em solid var( --accent-color );
+}
+
+.wc-visual-status-item.pending:before {
+  background: var( --accent-color );
+  border-color: var( --background );
+}
+
+.wc-visual-status-item-icon {
+  font-size: 48px;
+  width: 1em;
+  height: 1em;
+  
+  object-fit: contain;
+  object-position: center;
+}
+
+.wc-visual-status-item-text {
+  display: block;
+  font-size: 0.75em;
+}
+
+@keyframes wc-visual-status-fade {
+  0% {
+    opacity: 0.0;
+  }
+  100% {
+    opacity: 1.0;
+  }
+}
+
+@keyframes wc-visual-status-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1.0;
+  }
+}
+
+@keyframes wc-visual-status-progress {
+  0% {
+    max-width: 0%;
+  }
+  100% {
+    max-width: 100%;
+  }
+}
