@@ -5,7 +5,7 @@
  * Author: Subatomic
  * Author URI: https://subatomic.rocks/
  * Plugin URI: https://github.com/subatomic-rocks/wc-visual-status/
- * Version: 0.1.0
+ * Version: 0.1.1
  * Requires at least: 5.5
  * Tested up to: 5.7
  * WC requires at least: 5.2

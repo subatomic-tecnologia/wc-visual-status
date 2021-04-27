@@ -41,6 +41,7 @@
   transform: translateX(-50%);
   opacity: 0.00;
   max-width: 20%;
+  min-width: 80px;
 
   margin-bottom: calc( 1 * var( --progress-offset-amount ) );
   
