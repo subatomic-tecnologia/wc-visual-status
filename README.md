@@ -1,8 +1,10 @@
 # WooCommerce Visual Order Status
 
-![Screenshot](example.gif?raw=true)
+[![Donate using PayPal](https://img.shields.io/badge/Donate-PayPal-8886F9)](https://www.paypal.com/donate?hosted_button_id=7GM64HDD7FH3G) [![Donate using Pix](https://img.shields.io/badge/Donate-Pix-8886F9)](https://nubank.com.br/pagar/4rs96/dk2MZHOjFN)
 
-This plugins allows you to show order statuses in a visual, icon-based way.
+This plugins allows you to show order statuses in a visual, icon-based way:
+
+![Screenshot](example.gif?raw=true)
 
 It is built with customization and extension in mind, so you're free to add your own custom statuses and even custom handlers (such as shipping/tracking integrations).
 
@@ -103,6 +105,10 @@ function my_plugin_handle_shipping_test( $info )
 ### Custom Placement
 
 If you want to change where the status is displayed, simply add a filter to the `wc_visual_status_hook` tag and return a string containing the hook name that should be called for rendering. The plugin will take care of the rest.
+
+## License
+
+This project is licensed under the very permissive [BSD 3-Clause License](LICENSE), which basically allows you to use the plugin free of charge, both for personal and commercial work. If you feel like contributing to the development of this plugin, please consider donating through the buttons presented at the top of this file. Your support is very welcome!
 
 ## Special Thanks
 
